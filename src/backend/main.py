@@ -33,6 +33,7 @@ app.add_middleware(
 )
 
 DEFAULT_OUTPUT = "Code compiled successfully!"
+DEFAULT_FILE_NAME = "python_code_executer"
 
 class CodeRequest(BaseModel):
     code: str
@@ -42,7 +43,7 @@ async def execute_code(request: CodeRequest):
     print("hit")
     try:
         # Save code to a temporary file
-        code_file = f"/tmp/{uuid.uuid4()}.py"
+        code_file = f"/tmp/{DEFAULT_FILE_NAME}.py"
         with open(code_file, "w") as file:
             file.write(request.code)
         
@@ -67,7 +68,7 @@ async def execute_code(request: CodeRequest):
 async def submit_code(request: CodeRequest, db: Session = Depends(get_db)):
     try:
         # Save code to a temporary file
-        code_file = f"/tmp/{uuid.uuid4()}.py"
+        code_file = f"/tmp/{DEFAULT_FILE_NAME}.py"
         with open(code_file, "w") as file:
             file.write(request.code)
         
