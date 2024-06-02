@@ -11,6 +11,7 @@ const CodeEditorPage: React.FC = () => {
 
     const handleTestCode = async () => {
         try {
+            setOutput("Running code...");
             const result = await testCode(code);
             setOutput(result);
         } catch (error: any) {
@@ -20,6 +21,7 @@ const CodeEditorPage: React.FC = () => {
 
     const handleSubmit = async () => {
         try {
+            setOutput("Submitting code...");
             const result = await submitCode(code);
             setOutput(result);
         } catch (error: any) {
