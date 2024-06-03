@@ -72,6 +72,8 @@ async def submit_code(request: CodeRequest, db: Session = Depends(get_db)):
         # Save code to a temporary file
         code_file = f"/tmp/{DEFAULT_FILE_NAME}.py"
         with open(code_file, "w") as file:
+            file.write("import pandas as pd\n")
+            # file.write("from scipy import stats\n")
             file.write(request.code)
         
         # Execute the code and capture the output
